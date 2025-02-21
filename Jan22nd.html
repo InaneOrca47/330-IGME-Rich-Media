@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="go_red_button">Go Red</button>
+    <button id="go_green_button">Go Green</button>
+
+    <script>
+        // EVENTS AND SUCH
+        const goRedButton = document.querySelector('#go_red_button');
+        const goGreenButton = document.querySelector('#go_green_button');
+
+        // This is returning a function that sets the color (2 arrow functions)
+        const setBackgroundColor = (element, color, after) => {
+            return () => {
+                element.style.backgroundColor = color;
+                setTimeout(() => {
+
+                    return after();
+                }, 1000);
+            }
+
+        }
+
+        goRedButton.addEventListener('click',
+            setBackgroundColor(goGreenButton, 'red', () => {
+                goGreenButton.style.backgroundColor = 'gray';
+            }));
+        goGreenButton.addEventListener('click', 
+            setBackgroundColor(goRedButton, 'green', () => {
+            goRedButton.style.backgroundColor = 'gray';
+        }));
+
+
+        // const add1 = (n) => n + 1;
+        // const numToString = (n) => `${n}`;
+        // const stringToNum = (s) => +s;
+
+        // const addThenStringify = (n) => numToString(add1(n));
+
+        //TREE AND RECURSION
+        // const tree = {
+        //     value: 1, 
+        //     left: {
+        //         value: 2, 
+        //         left: {
+        //             value: 4,
+        //             left: {
+        //                 value: 'hi',
+        //                 left: null,
+        //                 right: null,
+        //             }
+        //         },
+        //         right: null,
+        //     },
+        //     right: {
+        //         value: 3,
+        //         left: null,
+        //         right: null,
+        //     }
+        // }
+
+        // const getLeft = (tree) => {
+        //     if (tree.left === null) {
+        //         return tree.value;
+        //     }
+        //     return getLeft(tree.left);
+        // }
+
+        // console.log(getLeft(tree));
+
+        //Ternary operator
+        // const print = (n) => {
+        //     const print1 = (a) => a <= 0 ? '1' : '1' + print2(a - 1);
+        //     const print2 = (b) => b <= 0 ? '2' : '2' + print1(b - 1);
+        //     return print1(n);
+        // }
+        // console.log(print(10));
+
+    </script>
+</body>
+
+</html>

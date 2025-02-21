@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width=800 height=800>
+
+    </canvas>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 10;
+        ctx.strokeRect(25, 25, 765, 765);
+
+        const makeRandomNumArray = (some_int, range) => {
+            let randNums = [];
+            for (let i = 0; i < some_int; ++i) {
+                randNums.push(Math.random() * range);
+            }
+            return randNums;
+        }
+
+        // const colors = [
+        //     'red',
+        //     'green',
+        //     'blue',
+        //     'purple',
+        //     'yellow',
+        //     'orange',
+        //     'cyan'
+        // ]
+
+        const randomNumbers = makeRandomNumArray(100, 400);
+
+        const randomHSLA = () => {
+            return `hsla(${Math.random() * 360}, 100%, 50%, .5)`;
+        }
+
+        const drawRandomRects = (num, randomArray) =>
+        {
+            for (let i = 0; i < num; ++i) {
+                // ctx.strokeStyle = colorArray[Math.floor(Math.random() * colorArray.length)];
+                ctx.strokeStyle = randomHSLA();
+                ctx.lineWidth = 7;
+                ctx.strokeRect(25 + randomArray[Math.floor(Math.random() * randomArray.length)],
+                    25 + randomArray[Math.floor(Math.random() * randomArray.length)],
+                    randomArray[Math.floor(Math.random() * randomArray.length)],
+                    randomArray[Math.floor(Math.random() * randomArray.length)]
+                );
+            }
+        }
+
+        drawRandomRects(100, randomNumbers);
+
+
+
+    </script>
+</body>
+
+</html>

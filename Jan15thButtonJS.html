@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- button -->
+    <button id= "the_button">Hey! Listen!</button>
+    <input id= "name_text_box" placeholder="first name">
+    <input id= "last_name_box" placeholder="last name">
+    <p id= "output_p">
+        Not the output
+    </p>
+
+    <script>
+        // When the button is clicked, say hello to whoever's name is in the input
+        const theButton = document.querySelector('#the_button');
+        const firstName = document.querySelector('#name_text_box');
+        const lastName = document.querySelector('#last_name_box');
+        const outputP = document.querySelector('#output_p');
+        //Set up event listener for the button, change p tags html
+
+        // WORKS
+        // theButton.onclick = () => {
+        //     console.log('Clicked!');
+        // }
+        // PREFERED, allows multiple event listeners
+        theButton.addEventListener('click', (e) => {
+            let textName = firstName.value + ' ' + lastName.value;
+            // change p tag html
+            outputP.innerHTML = `Hello ${textName}`;
+
+            document.querySelector('body').style.backgroundColor = 'red';
+        })
+
+    </script> 
+</body>
+</html>

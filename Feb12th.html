@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="my_canvas" height=800 width=800></canvas>
+    <script>
+        const canvas = document.querySelector('#my_canvas');
+        const ctx = canvas.getContext('2d');
+
+        const drawShape = (ctx, x, y) => {
+            const upPoint = [x, y - 10];
+            const downLeft = [x - 10, y + 10];
+            const downRight = [x + 10, y + 10];
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(...upPoint);
+            ctx.lineTo(...downLeft);
+            ctx.lineTo(...downRight);
+            ctx.closePath();
+
+            ctx.fillStyle = 'teal';
+            ctx.fill();
+            ctx.restore();
+        }
+
+        let mousePosition = [0, 0];
+        let shapes = [];
+
+        canvas.addEventListener('click', (e) => {
+            const boundingRect = canvas.getBoundingClientRect();
+
+            const mouseX = e.clientX - boundingRect.x;
+            const mouseY = e.clientY - boundingRect.y;
+
+            mousePosition = [mouseX, mouseY];
+
+            newShape = {
+                position: [mouseX, mouseY]
+            }
+            shapes.push(newShape);
+        });
+
+        const animate = (t) => {
+
+            ctx.save();
+            ctx.clearRect(0, 0, 800, 800)
+            for (let i = 0; i < shapes.length; ++i) {
+                drawShape(ctx, ...shapes[i].position);
+            }
+            requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+
+
+    </script>
+</body>
+
+</html>
