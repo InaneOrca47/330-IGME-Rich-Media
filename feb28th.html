@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // make array of 10 numbers
+        // let nums = Array.from({length:10}, (_, i) => i);
+        let nums = [...Array(10).keys()];
+        let newNums = nums.map(i => ++i);
+
+        console.log(newNums);
+
+        let squareNums = newNums.map(i => Math.pow(i, 2));
+
+        console.log(squareNums);
+
+        let names = [
+            'Chrisa', 'Joette', 'Shadrachette', 'Dana', 'Travisa'
+        ]
+
+        const sayHi = (name) => {
+            return `Hello, ${name}!`;
+        }
+
+        let hellos = names.map(sayHi);
+
+        console.log(hellos);
+
+        // even nums 0 -18
+        let evenNums = nums.map(i => 2*i);
+
+        // odd nums 1 -19
+        let oddNums = evenNums.map(i => i + 1);
+
+        console.log(evenNums);
+        console.log(oddNums);
+
+        // natural even nums using filter
+        let evenFilterNums = [...Array(20).keys()].filter(num => num % 2 === 0);
+
+        console.log(evenFilterNums);
+
+        let hiNums = evenFilterNums.map(sayHi);
+
+        console.log(hiNums);
+
+        //all array methods can be done through reduced
+        let sum = evenNums.reduce((acc, num) => {
+            return acc + num;
+        }, 0);
+
+        let reversedEvens = evenNums.reduce((acc, num) => {
+            return [num, ...acc];
+        }, []);
+
+        console.log(sum);
+
+        console.log(reversedEvens);
+
+    </script>
+</body>
+</html>
